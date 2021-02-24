@@ -1,0 +1,25 @@
+{
+  "name": "al-anon",
+  "version": "1.0.0",
+  "description": "Official WordPress Theme for Utah Al-Anon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass --output-style compressed -o css css/scss/main.scss",
+    "uglify": "uglifyjs js/app.js -o js/app.min.js",
+    "compile": "npm run scss && npm run uglify",
+    "watch:css": "onchange 'css/scss/**/*.scss' -- npm run compile",
+    "watch:js": "onchange 'js/app.js' -- npm run compile",
+    "build": "parallelshell 'npm run watch:css' 'npm run watch:js'"
+  },
+  "author": "James Tombs",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^5.0.0"
+  },
+  "devDependencies": {
+    "onchange": "^7.1.0",
+    "parallelshell": "^3.0.1",
+    "uglify-js": "^3.11.5"
+  }
+}
