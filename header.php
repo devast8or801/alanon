@@ -33,7 +33,14 @@
 			<div class="header-logo">
 				<?php the_custom_logo(); ?>
 			</div>
-			<div class="header-btns"></div>
+			<div class="header-btns">
+				<div class="search-btn"></div>
+				<div class="menu-btn" onclick="navChange(this)" id="menu-toggle">
+					<div class="bar1"></div>
+					<div class="bar2"></div>
+					<div class="bar3"></div>
+				</div>
+			</div>
 		</div>
 		<div class="bottom-header">
 			<nav id="aa_main_nav">
@@ -52,3 +59,8 @@
 		</div>
 	</header>
 	<!-- END HEADER -->
+	<script>
+function navChange(x) {
+  x.classList.toggle("change");
+}
+</script>
