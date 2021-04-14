@@ -25,7 +25,9 @@
 <!-- sidenav -->
 <?php include('side-nav.php'); ?>
   <!-- end sidenav -->
-<div id="page" class="site">
+
+  <!--All page content gets displayed below-->
+<div id="page" class="site aa-page-container">
 
 	<!-- HEADER -->
 	<header id="aa_header" class="site-header">
@@ -35,7 +37,7 @@
 			</div>
 			<div class="header-btns">
 				<div class="search-btn"></div>
-				<div class="menu-btn" onclick="navChange(this)" id="menu-toggle">
+				<div class="menu-btn" id="menu_toggle">
 					<div class="bar1"></div>
 					<div class="bar2"></div>
 					<div class="bar3"></div>
@@ -59,8 +61,3 @@
 		</div>
 	</header>
 	<!-- END HEADER -->
-	<script>
-function navChange(x) {
-  x.classList.toggle("change");
-}
-</script>

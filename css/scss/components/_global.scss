@@ -111,16 +111,16 @@ a{
    transition: 0.4s;
  } 
  
- .change .bar1 {
+ .hamburger-x .bar1 {
    -webkit-transform: rotate(-45deg) translate(-4px, 3px);
    transform: rotate(-45deg) translate(-4px, 3px);
  }
  
- .change .bar2 {
+ .hamburger-x .bar2 {
    opacity: 0;
  }
  
- .change .bar3 {
+ .hamburger-x .bar3 {
    -webkit-transform: rotate(45deg) translate(-8px, -8px);
    transform: rotate(45deg) translate(-8px, -8px);
  }
@@ -150,16 +150,18 @@ a{
   overflow-x: hidden;
   position: fixed;
   top: 0px;
-  right: 0px;
+  right: -350px;
   transition: width .3s;
   width: 350px;
   z-index: 2001;
-  display: none;
-
-  @include mobile{
-    display: none;
-  }
+  
 }
+
+.sidenav-open{
+  right: 0;
+  transition: 0.3ms;
+}
+
 .aa_side_nav_menu {
   margin: 50px 0;
   padding-left: 50px;
@@ -225,6 +227,17 @@ a{
   width: 100%;
   max-width: 1100px;
   margin: 0px auto;
+}
+
+.aa-page-container {
+  position: relative;
+  top:0;
+  left: 0;
+  transition: all .3s ease-in-out;
+
+  &.sidenav-open {
+    left: -350px;
+  }
 }
 
 

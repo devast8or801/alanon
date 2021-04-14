@@ -146,7 +146,7 @@ function al_anon_scripts() {
 	wp_style_add_data( 'al-anon-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'al-anon-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-
+	wp_enqueue_script( 'al-anon-custom', get_template_directory_uri() . '/js/app.min.js', array('jquery'), time(), true );
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
