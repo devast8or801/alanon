@@ -154,13 +154,15 @@ a{
   transition: width .3s;
   width: 350px;
   z-index: 2001;
+  transition: all .3s ease-in-out;
+
+  &.sidenav-open{
+    right: 0;
+    
+  }
   
 }
 
-.sidenav-open{
-  right: 0;
-  transition: 0.3ms;
-}
 
 .aa_side_nav_menu {
   margin: 50px 0;
