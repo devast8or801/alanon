@@ -11,19 +11,6 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<?php
-		if ( is_front_page() ) :
-		else :
-	?>
-	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-	</header>
-
-	<?php endif; ?>
-
-
-	<?php al_anon_post_thumbnail(); ?>
-
 	<div class="entry-content">
 		<?php
 		the_content();

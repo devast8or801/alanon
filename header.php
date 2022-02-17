@@ -36,7 +36,7 @@
 				<?php the_custom_logo(); ?>
 			</div>
 			<div class="header-btns">
-				<div class="search-btn"></div>
+				<!-- <div class="search-btn"></div> -->
 				<div class="menu-btn" id="menu_toggle">
 					<div class="bar1"></div>
 					<div class="bar2"></div>

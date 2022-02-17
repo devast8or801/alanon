@@ -11,6 +11,13 @@
     'post_types' => array( 'meetings' ),
     'autosave'   => true,
     'fields'     => array(
+      // SUSPENDED
+      array(
+        'name' => 'Suspended?',
+        'id'   => 'meeting_suspended',
+        'type' => 'checkbox',
+        'std'  => 0,
+      ),
       // IN PERSON?
       array(
         'name' => 'In Person Meeting?',
@@ -39,29 +46,13 @@
       array(
         'name'       => 'Start Time',
         'id'         => 'meeting_start_time',
-        'type'       => 'time',
-        'js_options' => array(
-            'timeFormat'      =>'h:mm TT',
-            'stepMinute'      => 30,
-            'controlType'     => 'select',
-            'showButtonPanel' => true,
-            'oneLine'         => true,
-        ),
-        'inline'     => false,
+        'type'        => 'text'
       ),
       // END TIME
       array(
         'name'       => 'End Time',
         'id'         => 'meeting_end_time',
-        'type'       => 'time',
-        'js_options' => array(
-            'timeFormat'      =>'h:mm TT',
-            'stepMinute'      => 30,
-            'controlType'     => 'select',
-            'showButtonPanel' => true,
-            'oneLine'         => true,
-        ),
-        'inline'     => false,
+        'type'        => 'text'
       ),
       // LOCATION
       array(
@@ -140,6 +131,26 @@
       ),
     )
   );
+
+
+  // META BOX
+  $meta_boxes[] = array(
+    'id'         => 'page_settings',
+    'title'      => __('Page Settings', 'al_anon'),
+    'context'    => 'after_title',
+    'priority'   => 'high',
+    'post_types' => array( 'page' ),
+    'autosave'   => true,
+    'fields'     => array(
+      // SUBHEAD
+      array(
+        'name'        => 'Subhead',
+        'id'          => 'page_subhead',
+        'type'        => 'textarea',
+      ),
+    )
+  );
+
   // END META BOX
   return $meta_boxes;
 };

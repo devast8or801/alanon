@@ -216,7 +216,7 @@ function special_nav_class ($classes, $item) {
 							'search_items'          => __('Search Meetings'),
 					),
 					'public' => true,
-					'has_archive' => true,
+					'has_archive' => false,
 					'rewrite' => array('slug' => 'meetings'),
 					'supports' => array( 'title', 'editor'),
 					'menu_position' => 3,
@@ -255,3 +255,33 @@ function special_nav_class ($classes, $item) {
 		 'query_var'             => true
 	 ));
  }
+
+
+ // WRAP EMBEDS WITH 16BY9 DIV
+function wrap_embed_with_div( $html ) {
+	return '<div class="embed-responsive embed-responsive-16by9">' . $html . '</div>';
+}
+add_filter( 'embed_oembed_html', 'wrap_embed_with_div', 10, 3 );
+
+
+// CUSTOM EXCERPT LENGTH
+function al_anon_excerpt_length( $length ) {
+	return 18;
+}
+add_filter( 'excerpt_length', 'al_anon_excerpt_length', 999 );
+
+
+// SHORTCODES
+// GET MEETINGS BY DAY
+function get_meetings_by_day($atts) {
+	$district = 'district-1';
+	$day = 'sunday';
+	$atts = shortcode_atts(array(
+		'district' => $district,
+		'day' => $day,
+	), $atts);
+
+	require('scodes/get_meetings_by_day.php');
+
+}
+add_shortcode('get_meetings_by_day', 'get_meetings_by_day');

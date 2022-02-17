@@ -12,9 +12,35 @@
  * @package al-anon
  */
 
+ //  VARS
+$subhead = rwmb_meta( 'page_subhead' );
+
 get_header();
+
 ?>
-	<!-- MAIN CONTENt AREA -->
+	<!-- PAGE HEADER -->
+	<?php if ( is_front_page() ) : ?>
+	<!-- ALERT BAR -->
+	<?php include get_theme_file_path('inc/alert-bar.php'); ?>
+	<!-- END ALERT BAR -->
+	<?php else : ?>
+	<!-- ALERT BAR -->
+	<?php include get_theme_file_path('inc/alert-bar.php'); ?>
+	<!-- END ALERT BAR -->
+		<?php if ( has_post_thumbnail() ) : ?>
+			<header class="entry-header featured-img-header" style="background-image:url('<?php echo the_post_thumbnail_url(); ?>');">
+			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+			<?php if ( !empty($subhead) ) : ?><div class="subhead"><?php echo($subhead); ?></div><?php endif; ?>
+			</header>
+		<?php else: ?>
+			<header class="entry-header">
+			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+			<?php if ( !empty($subhead) ) : ?><div class="subhead"><?php echo($subhead); ?></div><?php endif; ?>
+			</header>
+		<?php endif; ?>
+	<?php endif; ?>
+	<!-- END PAGE HEADER -->
+	<!-- MAIN CONTENT AREA -->
 	<main id="primary" class="site-main">
 
 		<?php
@@ -33,6 +59,12 @@ get_header();
 
 	</main>
 	<!-- END MAIN CONTENt AREA -->
+	<?php if ( is_front_page() ) : ?>
+	<?php else : ?>
+	<!-- CTA -->
+	<?php include get_theme_file_path('inc/cta.php'); ?>
+	<!-- END CTA -->
+	<?php endif; ?>
 
 <?php
 // get_sidebar();

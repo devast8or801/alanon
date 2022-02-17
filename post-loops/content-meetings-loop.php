@@ -1,11 +1,4 @@
 <?php
-/**
- * The template for displaying all single posts
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
- *
- * @package al-anon
- */
 
   // VARS
   $inPerson = rwmb_meta( 'meeting_in_person' );
@@ -23,54 +16,34 @@
   $zoomPass = rwmb_meta( 'meeting_zoom_pass' );
   $shortDesc = rwmb_meta( 'meeting_short_desc' );
   $notice = rwmb_meta( 'meeting_notice' );
+  $suspended = rwmb_meta( 'meeting_suspended' );
 
-get_header();
 ?>
-  <!-- PAGE HEADER -->
-	<?php
-		if ( is_front_page() ) :
-		else :
-	?>
-		<?php if ( has_post_thumbnail() ) : ?>
-			<header class="entry-header featured-img-header" style="background-image:url('<?php echo the_post_thumbnail_url(); ?>');">
-			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-			</header>
-		<?php else: ?>
-			<header class="entry-header">
-			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-			</header>
-		<?php endif; ?>
-	<?php endif; ?>
-	<!-- END PAGE HEADER -->
-	<!-- MAIN CONTENT AREA -->
-	<main id="primary" class="site-main">
-
-		<?php while ( have_posts() ) : ?>
-      
-      <?php the_post(); ?>
-
-      <?php if ( !empty($notice) ) : ?>
-        <!-- NOTICE -->
-        <div class="notice"><?php echo($notice); ?></div>
-        <!-- END NOTICE -->
-      <?php endif; ?>
-      
-      <?php if ( !empty($shortDesc) ) : ?>
-        <!-- SHORT DESCRIPTION -->
-        <p><?php echo($shortDesc); ?></p>
-        <!-- END SHORT DESCRIPTION -->
-      <?php endif; ?>
-
-      <div class="meeting-card">
+      <!-- CARD -->
+      <div class="meeting-card <?php if ( $suspended == 1 ) : ?>meeting-suspended<?php endif; ?>">
         <div class="meeting-card-header">
-          Meeting Details
+          <?php the_title(); ?>
         </div>
+        <?php if ( $suspended == 1 ) : ?>
+        <div class="meeting-suspended-bar">Suspended</div>  
+        <?php endif; ?>
         <div class="meeting-card-details">
+          <?php if ( !empty($location) ) : ?>
           <b><?php echo( $location ); ?></b><br>
+          <?php endif; ?>
+          <?php if ( !empty($address) ) : ?>
           <?php echo( $address ); ?><br>
+          <?php endif; ?>
+          <?php if ( !empty($day) ) : ?>
           <?php echo(  '<span class="meeting-card-dow">' . $day . 's - </span>' ); ?><?php echo( $startTime ); ?> to <?php echo( $endTime ); ?>
+          <?php endif; ?>
           <div class="meeting-card-host-details">
+            <?php if ( !empty($shortDesc) ) : ?>  
+            <div class="meeting-card-short-desc"><?php echo $shortDesc; ?></div>
+            <?php endif; ?>
+            <?php if ( !empty($host) ) : ?>
             Contact: <?php echo( $host ); ?><br>
+            <?php endif; ?>
             <?php if ( !empty($hostPhone) ) : ?>
               Contact Phone: <a href="tel:<?php echo( $hostPhoneStripped ); ?>"><?php echo( $hostPhone ); ?></a><br>
             <?php endif; ?>
@@ -78,20 +51,15 @@ get_header();
               Contact Email: <a href="mailto:<?php echo( $hostEmail ); ?>"><?php echo( $hostEmail ); ?></a>
             <?php endif; ?>
           </div>
+          <?php if ( !empty($zoomId) ) : ?>
           <div class="meeting-card-zoom-details">
-            <?php if ( !empty($zoomId) ) : ?>
+            
               Zoom ID: <a href="https://us02web.zoom.us/j/<?php echo($zoomIdStripped); ?>" target="_blank"><?php echo($zoomId); ?></a><br>
               Meeting Password: <?php echo( $zoomPass ); ?>
-            <?php endif; ?>
           </div>
+          <?php endif; ?>
+          <a href="<?php the_permalink(); ?>" class="aa-link">Meeting Details</a>
         </div>
       </div>
-      
-    <?php endwhile; ?>
+      <!-- END CARD -->
 
-	</main>
-	<!-- END MAIN CONTENt AREA -->
-
-<?php
-// get_sidebar();
-get_footer();
